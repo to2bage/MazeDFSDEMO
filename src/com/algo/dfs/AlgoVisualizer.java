@@ -39,7 +39,7 @@ public class AlgoVisualizer {
         this.renderData();          // render
     }
 
-    private void goDFSWithRecursion(int row, int col) {
+    private boolean goDFSWithRecursion(int row, int col) {
 
         if (!this.mzData.inArea(row, col)) {
             throw new IllegalArgumentException("row or col is out of range");
@@ -54,7 +54,7 @@ public class AlgoVisualizer {
                 row == this.mzData.getRowOfExit() &&
                 col == this.mzData.getColOfExit()
         ) {
-            return;
+            return true;
         }
 
         for (int i = 0; i < 4; i++) {
@@ -70,12 +70,15 @@ public class AlgoVisualizer {
                 this.mzData.path[newOfRow][newOfCol] = true;
                 this.renderData();              // render
 
-                goDFSWithRecursion(newOfRow, newOfCol);
+                if (goDFSWithRecursion(newOfRow, newOfCol)) {
+                    return true;
+                }
             }
         }
 
         this.mzData.path[row][col] = false;
         this.renderData();
+        return false;
     }
 
     private void renderData() {
