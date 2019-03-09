@@ -70,6 +70,14 @@ public class AlgoFrame extends JFrame {
                         AlgoVisHelper.setColor(g2d, Color.blue);
                     }
 
+                    if (AlgoFrame.this.mzData.visited[i][j]) {
+                        AlgoVisHelper.setColor(g2d, Color.green);
+                    }
+
+                    if (AlgoFrame.this.mzData.path[i][j]) {
+                        AlgoVisHelper.setColor(g2d, Color.red);
+                    }
+
                     AlgoVisHelper.fillRectangle(
                             g2d,
                             j * width,
